@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+
+<header th:replace="fragments/header :: headerFragment"></header>
+
+<h1>Checkout Page</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cartItems}">
+        <td th:text="${item.product.id}">Product Id</td>
+        <td th:text="${item.product.name}">Product Name</td>
+        <td th:text="${item.product.price}">Product Price</td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="totals">
+    <p>Subtotal: <span th:text="${subtotal}">Subtotal</span></p>
+    <p>Sale Tax (13%): <span th:text="${tax}">Tax</span></p>
+    <p>Total: <span th:text="${total}">Total</span></p>
+</div>
+
+<div class="actions">
+    <a href="#" th:href="@{/place-order}" class="button">Place Order</a>
+</div>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+</body>
+</html>

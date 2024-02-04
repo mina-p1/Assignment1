@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Page</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+
+<header th:replace="fragments/header :: headerFragment"></header>
+
+<h1>Product List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}">Product Id</td>
+        <td th:text="${product.name}">Product Name</td>
+        <td th:text="${product.price}">Product Price</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Insert Product</h2>
+<form th:action="@{/product}" th:object="${product}" method="post">
+    <div>
+        <label for="id">Id:</label>
+        <input type="text" id="id" name="id" th:value="*{id}" />
+    </div>
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="*{name}" required />
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" th:value="*{price}" step="0.01" required />
+    </div>
+    <div>
+        <button type="submit">Add Product!</button>
+    </div>
+</form>
+
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+/* General Styles */
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+/* Header and Footer Styles */
+header {
+    text-align: center;
+    padding: 1em 0;
+    border-bottom: 1px solid #ccc; /* Line at the bottom of the header */
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    border-top: 1px solid #ccc; /* Line at the top of the footer */
+    position: fixed;
+    bottom: 0;
+    width: 50%; /* Make footer same width as content area */
+    left: 25%; /* Center footer */
+}
+
+/* Navigation Bar */
+nav a {
+    color: black;
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content Styles */
+.main-content {
+    width: 50%; /* Main content takes up half the page */
+    margin: 20px auto; /* Center the content */
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional: Add shadow for better visibility */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #90ee90; /* Light green background */
+}
+
+table, th, td {
+    border: 1px solid black; /* Solid borders for table, th, and td */
+}
+
+th {
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    text-align: left;
+    padding: 8px;
+}
+
+/* Checkout Page Styles */
+.checkout-line {
+    border-top: 1px solid #ccc;
+    padding-top: 10px; /* Space above the line */
+}
+
+/* Form Styles */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+}
+
+input[type="text"],
+input[type="number"],
+button {
+    width: calc(100% - 22px); /* Account for padding and borders */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Button Styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content, footer {
+        width: 100%;
+        left: 0;
+    }
+}
