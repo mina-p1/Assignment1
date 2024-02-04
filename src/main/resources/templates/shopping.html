@@ -12,28 +12,35 @@
 <h1>Shopping Page</h1>
 
 <table>
-    <thead>
     <tr>
         <th>Product Id</th>
         <th>Product Name</th>
         <th>Product Price</th>
         <th>Action</th>
     </tr>
-    </thead>
-    <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.id}">760618965</td>
-        <td th:text="${product.name}">Ipad Pro 12</td>
-        <td th:text="${product.price}">2200.0</td>
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
         <td>
-            <form th:action="@{/add-to-cart}" method="post">
-                <input type="hidden" th:name="productId" th:value="${product.id}" />
-                <button type="submit">Add to Cart</button>
-            </form>
+            <a href="#" th:href="@{/shopping/add-to-cart/{productId}(productId=${product.id})}">
+                <img src="/images/shopping-cart-icon-flat-design-600nw-570153007.jpg" alt="Add to Cart" />
+            </a>
         </td>
     </tr>
-    </tbody>
 </table>
+
+<table>
+
+    <tr>
+        <th>Items in the shopping cart</th>
+
+    </tr>
+    <tr>
+        <td><span th:text="${cartItemCount}"></span></td>
+    </tr>
+</table>
+
 
 <footer th:replace="fragments/footer :: footerFragment"></footer>
 

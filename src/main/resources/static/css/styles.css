@@ -1,38 +1,22 @@
 /* General Styles */
 body, html {
-    font-family: Arial, sans-serif;
-    margin: 0;
     padding: 0;
-    background: #f4f4f4;
+    width: 500px;
 }
 
 /* Header and Footer Styles */
-header {
-    text-align: center;
-    padding: 1em 0;
-    border-bottom: 1px solid #ccc; /* Line at the bottom of the header */
+.headers {
+    padding-bottom: 10px;
+    padding-left: 5px;
+    border-bottom: 2px solid #000; /* Line at the bottom of the header */
 }
 
-footer {
-    text-align: center;
-    padding: 1em 0;
-    border-top: 1px solid #ccc; /* Line at the top of the footer */
-    position: fixed;
-    bottom: 0;
-    width: 50%; /* Make footer same width as content area */
-    left: 25%; /* Center footer */
+.footers {
+    margin-top: 25px;
+    padding-left: 5px;
+    border-top: 2px solid #000; /* Line at the top of the footer */
 }
 
-/* Navigation Bar */
-nav a {
-    color: black;
-    text-decoration: none;
-    padding: 0 10px;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
 
 /* Main Content Styles */
 .main-content {
@@ -45,24 +29,24 @@ nav a:hover {
 
 /* Table Styles */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #90ee90; /* Light green background */
+    border: 1px solid;
+    background-color: #d6eeee; /* Light green background */
 }
 
 table, th, td {
-    border: 1px solid black; /* Solid borders for table, th, and td */
+    border: 1px solid; /* Solid borders for table, th, and td */
 }
 
 th {
-    height: 50px;
-    background-color: #4CAF50;
-    color: white;
+    border: 1px solid;
+
+    background-color: #d6eeee;
+
 }
 
 td {
+    border: 1px solid;
     text-align: left;
-    padding: 8px;
 }
 
 /* Checkout Page Styles */

@@ -28,15 +28,24 @@
     </tbody>
 </table>
 
-<div class="totals">
-    <p>Subtotal: <span th:text="${subtotal}">Subtotal</span></p>
-    <p>Sale Tax (13%): <span th:text="${tax}">Tax</span></p>
-    <p>Total: <span th:text="${total}">Total</span></p>
-</div>
+<!-- Totals Table -->
+<table>
+    <tr>
+        <td>Subtotal</td>
+        <td><span th:text="${subtotal}">0.0</span></td>
+    </tr>
+    <tr>
+        <td>Sale Tax (13%)</td>
+        <td><span th:text="${tax}">0.0</span></td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td><span th:text="${total}">0.0</span></td>
+    </tr>
+</table>
 
-<div class="actions">
-    <a href="#" th:href="@{/place-order}" class="button">Place Order</a>
-</div>
+
+
 
 <footer th:replace="fragments/footer :: footerFragment"></footer>
 
