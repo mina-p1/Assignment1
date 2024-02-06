@@ -35,14 +35,26 @@ public class ShopController {
 
     @PostMapping("/product")
     public String addProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
-        productService.save(product);
-        redirectAttributes.addFlashAttribute("success", "Product added successfully!");
+        if (String.valueOf(product.getId()).length() == 9) {
+            productService.save(product);
+            redirectAttributes.addFlashAttribute("success", "Product added successfully!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Product ID must be exactly 9 digits long.");
+        }
         return "redirect:/product";
     }
 
     @PostMapping("/add-to-cart")
     public String addToCart(@RequestParam Long productId, HttpSession session) {
-        productService.findById(productId).ifPresent(product -> shoppingCartService.addProductToCart(product, session));
+        productService.findById(productId).ifPresent(product -> {
+            // Add product details to the session
+            shoppingCartService.addProductToCart(product, session);
+
+            // Additionally, you can store product details as attributes in the session
+            session.setAttribute("productId", product.getId());
+            session.setAttribute("productName", product.getName());
+            session.setAttribute("productPrice", product.getPrice());
+        });
         return "redirect:/shopping";
     }
 

@@ -32,6 +32,7 @@
 <h2>Insert Product</h2>
 </div>
 
+
 <form th:action="@{/product}" th:object="${product}" method="post">
     <div>
         <label for="id">Id:</label>
@@ -46,9 +47,16 @@
         <input type="number" id="price" name="price" th:value="*{price}" step="0.01" required />
     </div>
     <div>
-        <button type="submit">Add Product</button>
+
+        <form th:action="@{/addToCart}" method="post">
+            <button type="submit">Add to Cart</button>
+        </form>
+
     </div>
 </form>
+
+
+
 
 <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 

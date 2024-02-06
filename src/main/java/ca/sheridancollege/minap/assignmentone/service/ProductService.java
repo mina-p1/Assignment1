@@ -13,24 +13,26 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
-    private List<Product> products = new ArrayList<>();
 
-    // Mimic repository methods for demonstration
+    private final ProductRepository productRepository;
+
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     public List<Product> findAll() {
-        return new ArrayList<>(products);
+        return productRepository.findAll();
     }
 
     public Product save(Product product) {
-        products.add(product);
-        return product;
+        return productRepository.save(product);
     }
 
     public Optional<Product> findById(Long id) {
-        return products.stream().filter(product -> product.getId().equals(id)).findFirst();
+        return productRepository.findById(id);
     }
 }
 
 
-// Additional methods can be added to implement more complex business logic,
-// such
 

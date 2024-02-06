@@ -31,16 +31,22 @@
 <!-- Totals Table -->
 <table>
     <tr>
-        <td>Subtotal</td>
-        <td><span th:text="${subtotal}">0.0</span></td>
+        <th>Subtotal</th>
     </tr>
     <tr>
-        <td>Sale Tax (13%)</td>
-        <td><span th:text="${tax}">0.0</span></td>
+        <td><span th:text="${subtotal}"></span></td>
     </tr>
     <tr>
-        <td>Total</td>
-        <td><span th:text="${total}">0.0</span></td>
+        <th>Sale Tax 13%</th>
+    </tr>
+    <tr>
+        <td><span th:text="${tax}"></span></td>
+    </tr>
+    <tr>
+        <th>Total</th>
+    </tr>
+    <tr>
+        <td><span th:text="${total}"></span></td>
     </tr>
 </table>
 

@@ -18,6 +18,7 @@
         <th>Product Price</th>
         <th>Action</th>
     </tr>
+
     <tr th:each="product : ${products}">
         <td th:text="${product.id}"></td>
         <td th:text="${product.name}"></td>
@@ -28,6 +29,7 @@
             </a>
         </td>
     </tr>
+
 </table>
 
 <table>
