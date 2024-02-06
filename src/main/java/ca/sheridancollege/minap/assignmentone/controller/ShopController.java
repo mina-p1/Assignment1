@@ -1,7 +1,6 @@
 package ca.sheridancollege.minap.assignmentone.controller;
 
 import ca.sheridancollege.minap.assignmentone.model.Product;
-import ca.sheridancollege.minap.assignmentone.model.ShoppingCart;
 import ca.sheridancollege.minap.assignmentone.service.ProductService;
 import ca.sheridancollege.minap.assignmentone.service.ShoppingCartService;
 import jakarta.servlet.http.HttpSession;
@@ -10,9 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-
-import java.util.*;
 
 @Controller
 public class ShopController {
@@ -32,12 +28,10 @@ public class ShopController {
 
     @GetMapping("/product")
     public String showProductForm(Model model) {
-        model.addAttribute("product", new Product()); // Add this line to instantiate a new Product
-        List<Product> products = productService.findAll();
-        model.addAttribute("products", products);
+        model.addAttribute("product", new Product());
+        model.addAttribute("products", productService.findAll());
         return "product";
     }
-
 
     @PostMapping("/product")
     public String addProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
@@ -46,8 +40,18 @@ public class ShopController {
         return "redirect:/product";
     }
 
+    @PostMapping("/add-to-cart")
+    public String addToCart(@RequestParam Long productId, HttpSession session) {
+        productService.findById(productId).ifPresent(product -> shoppingCartService.addProductToCart(product, session));
+        return "redirect:/shopping";
+    }
 
-
+    @GetMapping("/shopping")
+    public String viewShoppingCart(Model model, HttpSession session) {
+        model.addAttribute("products", shoppingCartService.getProductsInCart(session));
+        model.addAttribute("cartSize", shoppingCartService.getCartSize(session));
+        return "shopping";
+    }
 
     @GetMapping("/checkout")
     public String viewCheckoutPage(Model model, HttpSession session) {
@@ -58,26 +62,5 @@ public class ShopController {
         return "checkout";
     }
 
-    @PostMapping("/add-to-cart")
-    public String addToCart(@RequestParam Long productId, HttpSession session) {
-        Optional<Product> productOpt = productService.findById(productId);
-        productOpt.ifPresent(product -> shoppingCartService.addProductToCart(product, session));
-        return "redirect:/shopping";
-    }
-
-
-
-    @GetMapping("/shopping")
-    public String viewShoppingCart(Model model, HttpSession session) {
-        HashMap<Product, Integer> productsInCart = shoppingCartService.getProductsInCart(session);
-        model.addAttribute("products", productsInCart);
-        model.addAttribute("cartSize", shoppingCartService.getCartSize(session));
-        return "shopping";
-    }
-
-
-
-
-    // ... Additional methods for updating the cart, removing items, etc.
+    // Additional methods for updating the cart, removing items, etc., can be added as needed.
 }
-

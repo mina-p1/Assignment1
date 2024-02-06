@@ -7,45 +7,29 @@ import ca.sheridancollege.minap.assignmentone.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ProductService {
+    private List<Product> products = new ArrayList<>();
 
-    private final ProductRepository productRepository;
-
-    @Autowired
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
-
-    public List<Product> findAllProducts() {
-        return productRepository.findAll();
-    }
-
-    public Optional<Product> findProductById(Long id) {
-        return productRepository.findById(id);
-    }
-
-    public Product saveProduct(Product product) {
-        // Before saving, you could add business logic here if needed
-        return productRepository.save(product);
-    }
-
+    // Mimic repository methods for demonstration
     public List<Product> findAll() {
-        return productRepository.findAll();
+        return new ArrayList<>(products);
     }
 
     public Product save(Product product) {
-        return productRepository.save(product);
+        products.add(product);
+        return product;
     }
 
     public Optional<Product> findById(Long id) {
-        return productRepository.findById(id);
+        return products.stream().filter(product -> product.getId().equals(id)).findFirst();
     }
-
 }
+
 
 // Additional methods can be added to implement more complex business logic,
 // such
