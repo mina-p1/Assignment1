@@ -33,14 +33,7 @@ public class ShoppingCartService {
         return cart.calculateTotal();
     }
 
-    private ShoppingCart getOrCreateCart(HttpSession session) {
-        ShoppingCart cart = (ShoppingCart) session.getAttribute(SHOPPING_CART);
-        if (cart == null) {
-            cart = new ShoppingCart();
-            session.setAttribute(SHOPPING_CART, cart);
-        }
-        return cart;
-    }
+
 
     public double calculateTax(HttpSession session) {
         double subtotal = calculateSubtotal(session);
@@ -53,6 +46,16 @@ public class ShoppingCartService {
         double tax = calculateTax(session);
         return subtotal + tax;
     }
+
+    public ShoppingCart getOrCreateCart(HttpSession session) {
+        ShoppingCart cart = (ShoppingCart) session.getAttribute(SHOPPING_CART);
+        if (cart == null) {
+            cart = new ShoppingCart();
+            session.setAttribute(SHOPPING_CART, cart);
+        }
+        return cart;
+    }
+
 
 
 

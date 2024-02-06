@@ -1,6 +1,7 @@
 package ca.sheridancollege.minap.assignmentone.controller;
 
 import ca.sheridancollege.minap.assignmentone.model.Product;
+import ca.sheridancollege.minap.assignmentone.model.ShoppingCart;
 import ca.sheridancollege.minap.assignmentone.service.ProductService;
 import ca.sheridancollege.minap.assignmentone.service.ShoppingCartService;
 import jakarta.servlet.http.HttpSession;
@@ -44,26 +45,27 @@ public class ShopController {
         return "redirect:/product";
     }
 
+
+
+
     @PostMapping("/add-to-cart")
     public String addToCart(@RequestParam Long productId, HttpSession session) {
         productService.findById(productId).ifPresent(product -> {
-            // Add product details to the session
             shoppingCartService.addProductToCart(product, session);
-
-            // Additionally, you can store product details as attributes in the session
-            session.setAttribute("productId", product.getId());
-            session.setAttribute("productName", product.getName());
-            session.setAttribute("productPrice", product.getPrice());
         });
         return "redirect:/shopping";
     }
 
+
+
     @GetMapping("/shopping")
     public String viewShoppingCart(Model model, HttpSession session) {
-        model.addAttribute("products", shoppingCartService.getProductsInCart(session));
-        model.addAttribute("cartSize", shoppingCartService.getCartSize(session));
+        ShoppingCart cart = shoppingCartService.getOrCreateCart(session);
+        model.addAttribute("products", cart.getProducts());
+        model.addAttribute("cartItemCount", cart.getTotalItemCount());
         return "shopping";
     }
+
 
     @GetMapping("/checkout")
     public String viewCheckoutPage(Model model, HttpSession session) {
@@ -74,5 +76,5 @@ public class ShopController {
         return "checkout";
     }
 
-    // Additional methods for updating the cart, removing items, etc., can be added as needed.
+
 }
