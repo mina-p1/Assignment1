@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<header th:replace="fragments/header :: headerFragment"></header>
+<header th:replace="~{fragments/header :: headerFragment}"></header>
 
 <h1>Product List</h1>
 <table>
@@ -46,7 +46,7 @@
     </div>
 </form>
 
-<footer th:replace="fragments/footer :: footerFragment"></footer>
+<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
 
 </body>
 </html>

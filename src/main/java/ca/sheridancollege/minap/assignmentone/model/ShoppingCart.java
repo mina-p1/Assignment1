@@ -1,19 +1,20 @@
 package ca.sheridancollege.minap.assignmentone.model;
 
 
+import lombok.Getter;
+
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * ShoppingCart class to hold products and their quantities.
- */
+
 public class ShoppingCart {
 
     // Using LinkedHashMap to preserve the order of insertion.
     private Map<Product, Integer> products = new LinkedHashMap<>();
 
     // A variable to keep track of the total number of items in the cart.
+    @Getter
     private int totalItemCount = 0;
 
     /**
@@ -46,13 +47,6 @@ public class ShoppingCart {
         return Collections.unmodifiableMap(products);
     }
 
-    /**
-     * Gets the total number of items in the cart.
-     *
-     * @return the total number of items.
-     */
-    public int getTotalItemCount() {
-        return totalItemCount;
-    }
+
 }
 

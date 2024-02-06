@@ -1,6 +1,7 @@
 package ca.sheridancollege.minap.assignmentone.controller;
 
 import ca.sheridancollege.minap.assignmentone.model.Product;
+import ca.sheridancollege.minap.assignmentone.model.ShoppingCart;
 import ca.sheridancollege.minap.assignmentone.service.ProductService;
 import ca.sheridancollege.minap.assignmentone.service.ShoppingCartService;
 import jakarta.servlet.http.HttpSession;
@@ -11,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class ShopController {
@@ -48,11 +48,14 @@ public class ShopController {
 
 
 
-    @GetMapping("/shopping")
-    public String viewShoppingCart(Model model, HttpSession session) {
-        model.addAttribute("products", shoppingCartService.getProductsInCart(session));
-        model.addAttribute("cartSize", shoppingCartService.getCartSize(session));
-        return "shopping";
+
+    @GetMapping("/checkout")
+    public String viewCheckoutPage(Model model, HttpSession session) {
+        model.addAttribute("cartItems", shoppingCartService.getProductsInCart(session));
+        model.addAttribute("subtotal", shoppingCartService.calculateSubtotal(session));
+        model.addAttribute("tax", shoppingCartService.calculateTax(session));
+        model.addAttribute("total", shoppingCartService.calculateTotal(session));
+        return "checkout";
     }
 
     @PostMapping("/add-to-cart")
@@ -63,13 +66,13 @@ public class ShopController {
     }
 
 
-    @GetMapping("/checkout")
-    public String viewCheckoutPage(Model model, HttpSession session) {
-        model.addAttribute("cartItems", shoppingCartService.getProductsInCart(session));
-        model.addAttribute("subtotal", shoppingCartService.calculateSubtotal(session));
-        model.addAttribute("tax", shoppingCartService.calculateTax(session));
-        model.addAttribute("total", shoppingCartService.calculateTotal(session));
-        return "checkout";
+
+    @GetMapping("/shopping")
+    public String viewShoppingCart(Model model, HttpSession session) {
+        HashMap<Product, Integer> productsInCart = shoppingCartService.getProductsInCart(session);
+        model.addAttribute("products", productsInCart);
+        model.addAttribute("cartSize", shoppingCartService.getCartSize(session));
+        return "shopping";
     }
 
 

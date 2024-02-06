@@ -5,13 +5,15 @@ import ca.sheridancollege.minap.assignmentone.model.ShoppingCart;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class ShoppingCartService {
 
     public static final String SHOPPING_CART = "shoppingCart";
-    private static final double TAX_RATE = 0.13; // 13% tax rate for example
+    private static final double TAX_RATE = 0.13; // 13% tax rate
 
 
     public void addProductToCart(Product product, HttpSession session) {
@@ -53,6 +55,8 @@ public class ShoppingCartService {
         double tax = calculateTax(session);
         return subtotal + tax;
     }
+
+    
 
 
 

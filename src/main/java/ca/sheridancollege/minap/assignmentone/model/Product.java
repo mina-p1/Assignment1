@@ -1,6 +1,5 @@
 package ca.sheridancollege.minap.assignmentone.model;
 
-
 import jakarta.persistence.*;
 import org.springframework.data.annotation.Id;
 
@@ -10,7 +9,7 @@ public class Product {
 
     @jakarta.persistence.Id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY) // Remove this line
     private Long id;
 
     @Column(name = "name", nullable = false)
@@ -24,14 +23,21 @@ public class Product {
     }
 
     // Additional constructors can be added as needed
-    public Product(String name, Double price) {
+    public Product(Long id, String name, Double price) { // Add 'Long id' parameter
+        this.id = id; // Set the id
         this.name = name;
         this.price = price;
     }
 
     // Getters and setters for all fields
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -49,14 +55,5 @@ public class Product {
         this.price = price;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
     // hashCode, equals, and toString methods can be overridden as needed
 }
-
