@@ -1,46 +1,50 @@
-/* General Styles */
 body, html {
     padding: 0;
     width: 500px;
 }
 
-/* Header and Footer Styles */
 .headers {
     padding-bottom: 10px;
     padding-left: 5px;
-    border-bottom: 2px solid #000; /* Line at the bottom of the header */
+    border-bottom: 2px solid #000;
 }
 
 .footers {
     margin-top: 25px;
     padding-left: 5px;
-    border-top: 2px solid #000; /* Line at the top of the footer */
+    border-top: 2px solid #000;
 }
 
 .smallHeader {
     border-top: 2px solid #000;
 
 }
-
-
-/* Main Content Styles */
-.main-content {
-    width: 50%; /* Main content takes up half the page */
-    margin: 20px auto; /* Center the content */
-    padding: 20px;
-    background: white;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Optional: Add shadow for better visibility */
+.add-to-cart-btn {
+    width: 30px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Table Styles */
+
+
+.main-content {
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+
 table {
     border: 1px solid;
-    background-color: #d6eeee; /* Light green background */
+    background-color: #d6eeee;
     margin-bottom: 10px;
 }
 
 table, th, td {
-    border: 1px solid; /* Solid borders for table, th, and td */
+    border: 1px solid;
 }
 
 th {
@@ -55,13 +59,13 @@ td {
     text-align: left;
 }
 
-/* Checkout Page Styles */
+
 .checkout-line {
     border-top: 1px solid #ccc;
-    padding-top: 10px; /* Space above the line */
+    padding-top: 10px;
 }
 
-/* Form Styles */
+
 form {
     margin-top: 20px;
 }
@@ -73,14 +77,14 @@ label {
 input[type="text"],
 input[type="number"],
 button {
-    width: calc(100% - 22px); /* Account for padding and borders */
+    width: calc(100% - 22px);
     padding: 10px;
     margin: 5px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-/* Button Styles */
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -92,12 +96,12 @@ button:hover {
     background-color: #45a049;
 }
 
-/* Utility Classes */
+
 .hidden {
     display: none;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .main-content, footer {
         width: 100%;

@@ -48,10 +48,12 @@ public class ShopController {
 
 
 
-    @PostMapping("/add-to-cart")
+    @PostMapping("/shopping/add-to-cart")
     public String addToCart(@RequestParam Long productId, HttpSession session) {
-        productService.findById(productId).ifPresent(product -> {
+        productService.findById(productId).ifPresentOrElse(product -> {
             shoppingCartService.addProductToCart(product, session);
+        }, () -> {
+            // Handle case where product is not found
         });
         return "redirect:/shopping";
     }
@@ -60,9 +62,9 @@ public class ShopController {
 
     @GetMapping("/shopping")
     public String viewShoppingCart(Model model, HttpSession session) {
-        ShoppingCart cart = shoppingCartService.getOrCreateCart(session);
-        model.addAttribute("products", cart.getProducts());
-        model.addAttribute("cartItemCount", cart.getTotalItemCount());
+        model.addAttribute("products", productService.findAll());
+        model.addAttribute("cartSize", shoppingCartService.getCartSize(session));
+        model.addAttribute("totalPrice", shoppingCartService.calculateTotal(session));
         return "shopping";
     }
 

@@ -1,7 +1,5 @@
 package ca.sheridancollege.minap.assignmentone.service;
 
-
-
 import ca.sheridancollege.minap.assignmentone.model.Product;
 import ca.sheridancollege.minap.assignmentone.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +22,16 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void save(Product product) {
-        productRepository.save(product);
-    }
-
     public Optional<Product> findById(Long id) {
         return productRepository.findById(id);
     }
+
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
+    // You could also add delete, update methods here as needed
+    public void deleteById(Long id) {
+        productRepository.deleteById(id);
+    }
 }
-
-
-
