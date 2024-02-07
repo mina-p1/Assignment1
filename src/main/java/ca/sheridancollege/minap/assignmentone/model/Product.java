@@ -32,7 +32,7 @@ public class Product {
         this.price = price;
     }
 
-    // Getters and setters for all fields
+
 
 
 }

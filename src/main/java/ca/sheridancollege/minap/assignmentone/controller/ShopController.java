@@ -53,7 +53,7 @@ public class ShopController {
         productService.findById(productId).ifPresentOrElse(product -> {
             shoppingCartService.addProductToCart(product, session);
         }, () -> {
-            // Handle case where product is not found
+
         });
         return "redirect:/shopping";
     }

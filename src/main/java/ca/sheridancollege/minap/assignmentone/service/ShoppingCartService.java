@@ -26,7 +26,6 @@ public class ShoppingCartService {
     public void addProductToCart(Product product, HttpSession session) {
         ShoppingCart cart = getOrCreateCart(session);
         cart.addProduct(product);
-        // No need to explicitly set the cart in the session again as it's already there and being modified directly
     }
 
 
@@ -50,9 +49,7 @@ public class ShoppingCartService {
         return String.format("%.2f", total.setScale(2, RoundingMode.HALF_UP));
     }
 
-    public void clearCart(HttpSession session) {
-        session.removeAttribute(SHOPPING_CART_ATTRIBUTE);
-    }
+
 
     public double calculateSubtotal(HttpSession session) {
         ShoppingCart cart = getOrCreateCart(session);

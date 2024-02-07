@@ -30,8 +30,6 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    // You could also add delete, update methods here as needed
-    public void deleteById(Long id) {
-        productRepository.deleteById(id);
-    }
+
+
 }
