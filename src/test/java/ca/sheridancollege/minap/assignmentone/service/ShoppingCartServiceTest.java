@@ -40,7 +40,7 @@ public class ShoppingCartServiceTest {
         shoppingCartService.addProductToCart(product2, session);
 
         // Act
-        double total = shoppingCartService.calculateTotal(session);
+        double total = Double.parseDouble(shoppingCartService.calculateTotal(session));
 
         // Assert
         assertEquals(49.98, total);

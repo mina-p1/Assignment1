@@ -5,6 +5,8 @@ import ca.sheridancollege.minap.assignmentone.model.ShoppingCart;
 import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpSession;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Service
@@ -39,9 +41,13 @@ public class ShoppingCartService {
         return cart.getTotalItemCount();
     }
 
-    public double calculateTotal(HttpSession session) {
-        ShoppingCart cart = getOrCreateCart(session);
-        return cart.calculateTotal();
+    public String calculateTotal(HttpSession session) {
+        double subtotal = calculateSubtotal(session);
+        double tax = calculateTax(session);
+        BigDecimal total = BigDecimal.valueOf(subtotal + tax);
+
+        // Round to 2 decimal places and convert to String format
+        return String.format("%.2f", total.setScale(2, RoundingMode.HALF_UP));
     }
 
     public void clearCart(HttpSession session) {

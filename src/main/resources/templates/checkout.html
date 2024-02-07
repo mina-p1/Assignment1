@@ -21,9 +21,9 @@
     </thead>
     <tbody>
     <tr th:each="item : ${cartItems}">
-        <td th:text="${item.product.id}">Product Id</td>
-        <td th:text="${item.product.name}">Product Name</td>
-        <td th:text="${item.product.price}">Product Price</td>
+        <td th:text="${item.id}">Product Id</td>
+        <td th:text="${item.name}">Product Name</td>
+        <td th:text="${item.price}">Product Price</td>
     </tr>
     </tbody>
 </table>
